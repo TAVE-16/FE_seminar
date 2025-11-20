@@ -1,2 +1,2 @@
-# FE_semina
+# FE_seminar
 웹 프론트엔드 &amp; 앱 프론트엔드 실습 세미나를 위한 레포지토리
