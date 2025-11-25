@@ -55,7 +55,7 @@ export default function App() {
           <p className="text-xl text-black">아래의 버튼을 클릭해 프로젝트를 조회해보세요!</p>
           </div>
            
-            <div className="flex flex-col gap-2 bg-white rounded-lg p-4 mt-4 w-full h-[24rem] overflow-y-auto">
+            <div className="flex flex-col gap-4 bg-white rounded-lg p-4 mt-4 w-full h-[24rem] overflow-y-auto">
 
               {projects.length > 0 && projects.map((project) => (
                 <ProjectBox key={project.projectId} project={project} />
