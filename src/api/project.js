@@ -1,15 +1,9 @@
 import client from "./client";
 
 export const getProjects = async () => {
-  const response = await client.get("/projects");
-  return response.data;
+  // 조회 API를 연동해봅시다.
 };
 
 export const createProject = async (project) => {
-  const response = await client.post("/projects", {
-    teamName: project.teamName,
-    description: project.description,
-    part: project.part,
-  });
-  return response.data;
+  // 생성 API를 연동해봅시다.
 };
