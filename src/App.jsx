@@ -15,26 +15,11 @@ export default function App() {
   ];
 
   const handleGetProjects = async () => {
-    const response = await getProjects();
-    setProjects(response.data || []);
-    console.log(response);
+    // 조회 API를 연동해봅시다.
   };
 
   const handleCreateProject = async () => {
-    console.log(teamName, description, part);
-    if (teamName && description && part) {
-      const response = await createProject({ teamName, description, part });
-      if (response.data) {
-        setProjects([...projects, response.data]);
-      }
-      console.log(response);
-      alert('프로젝트가 추가되었습니다!');
-      setTeamName('');
-      setDescription('');
-      setPart('');
-    } else {
-      alert('모든 필드를 입력해주세요!');
-    }
+   // 생성 API를 연동해봅시다.
   };
 
 
@@ -49,6 +34,8 @@ export default function App() {
         </div>
 
         <div className="flex justify-center items-center w-full h-full gap-8 p-8">
+
+          {/* 프로젝트 조회 부분 */}
           <div className="flex flex-col justify-between items-center bg-white/50 rounded-lg p-6 w-1/2 h-[36rem] shadow-lg">
           <div className='flex flex-col items-center gap-4'>
           <h2 className="text-3xl font-bold text-black">프로젝트 조회</h2>
@@ -57,19 +44,23 @@ export default function App() {
            
             <div className="flex flex-col gap-4 bg-white rounded-lg p-4 mt-4 w-full h-[24rem] overflow-y-auto">
 
-              {projects.length > 0 && projects.map((project) => (
-                <ProjectBox key={project.projectId} project={project} />
-              ))}
+            {/* 조회 API 연동 후 <ProjectBox /> 컴포넌트를 반복 호출해서 프로젝트를 표시해봅시다. */}
+
               </div>
             <button className="bg-blue-500 text-white rounded-lg p-2 hover:shadow-lg cursor-pointer"
             onClick={handleGetProjects}>프로젝트 조회하기!</button>
           </div>
+
+
+          {/* 프로젝트 추가 부분 */}
           <div className="flex flex-col justify-between items-center bg-white/50 rounded-lg p-6 w-1/2 h-[36rem] shadow-lg">
           <div className='flex flex-col items-center gap-4'>
           <h2 className="text-3xl font-bold text-black">프로젝트 추가하기</h2>
           <p className="text-xl text-black">정보를 입력하고 버튼을 클릭해 프로젝트를 추가하세요!</p>
           </div>
-           
+          
+          
+            {/* 팀명 입력 */}
             <div className="flex flex-col gap-2 rounded-lg p-4 mt-4 w-full">
               <label className="text-black text-lg">팀명</label>
               <input 
@@ -79,8 +70,13 @@ export default function App() {
                 onChange={(e) => setTeamName(e.target.value)}
                 placeholder="팀명을 입력해주세요."
               />
+
+            {/* 분야 선택 */}
               <label className="text-black text-lg">분야</label>
               <DropDown options={parts} value={part} onChange={(e) => setPart(e.target.value)} />
+
+
+            {/* 프로젝트 설명 입력 */}
               <label className="text-black text-lg">프로젝트 설명</label>
               <input 
                 type="text" 
@@ -91,6 +87,8 @@ export default function App() {
               />
             </div>
 
+
+            {/* 프로젝트 추가 버튼에 생성 API를 연동해봅시다. */}
             <button className="bg-blue-500 text-white rounded-lg p-2 hover:shadow-lg cursor-pointer"
             onClick={handleCreateProject}>프로젝트 추가하기!</button>
           </div>
